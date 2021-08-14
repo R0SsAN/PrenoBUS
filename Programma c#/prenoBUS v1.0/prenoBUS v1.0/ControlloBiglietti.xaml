@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:prenoBUS_v1._0"
+        xmlns:QrWebCam="clr-namespace:QrWebCam;assembly=QrWebCam" x:Class="prenoBUS_v1._0.ControlloBiglietti"
+        mc:Ignorable="d"
+        Title="PrenoBUS v1.0 - Controllo Biglietti" Height="642" Width="1184" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Canvas HorizontalAlignment="Left" Height="612" VerticalAlignment="Top" Width="1178" Margin="0,0,-0.4,0">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF289EFF" Offset="0"/>
+                    <GradientStop Color="#FF20E3FF" Offset="1"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+            <Canvas Height="530" Canvas.Left="87" Canvas.Top="35" Width="989" Background="White">
+                <QrWebCam:QrWebCamControl Loaded="Window_Loaded" x:Name="webCam" QrDecoded="QrWebCamControl_QrDecoded" Height="256" Canvas.Top="101" Width="408" Canvas.Left="263" />
+            </Canvas>
+        </Canvas>
+
+    </Grid>
+</Window>

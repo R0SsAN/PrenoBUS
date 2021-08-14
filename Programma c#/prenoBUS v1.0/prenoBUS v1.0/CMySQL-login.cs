@@ -16,17 +16,16 @@ namespace prenoBUS_v1._0
         public bool connettiDatabase()
         {
             connString = "server=remotemysql.com;user=UZ4rJQ4qBZ;password=xzZFVqol3S;database=UZ4rJQ4qBZ;charset=utf8";
-            //try
-            //{
+            try
+            {
                 conn = new MySqlConnection(connString);
-                //conn.ConnectionString = connString;
                 conn.Open();
                 return true;
-            /*}
-            catch(Exception)
+            }
+            catch(MySqlException)
             {
                 return false;
-            }    */
+            }
         }
         public bool disconnettiDatabase()
         {

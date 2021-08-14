@@ -31,11 +31,6 @@ namespace prenoBUS_v1._0
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(database_login.connettiDatabase().ToString());
-        }
-
         private void username_MouseEnter(object sender, MouseEventArgs e)
         {
             username.Text = "";
@@ -84,6 +79,9 @@ namespace prenoBUS_v1._0
             if (check)
             {
                 MessageBox.Show("Utente verificato!");
+                SceltaLinea win = new SceltaLinea();
+                win.Show();
+                this.Close();
             }
             else
             {
