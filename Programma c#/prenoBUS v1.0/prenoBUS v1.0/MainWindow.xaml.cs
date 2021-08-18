@@ -27,8 +27,6 @@ namespace prenoBUS_v1._0
             InitializeComponent();
             database_login = new CMySQL_login();
             connettiDatabase();
-
-
         }
 
         private void username_MouseEnter(object sender, MouseEventArgs e)

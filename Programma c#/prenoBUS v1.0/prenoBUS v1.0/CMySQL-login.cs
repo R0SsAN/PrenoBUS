@@ -41,7 +41,8 @@ namespace prenoBUS_v1._0
         public bool controllaCredenziali(string username, string password)
         {
             string query = $"SELECT * FROM login WHERE username='{username}' AND password='{password}';";
-
+            disconnettiDatabase();
+            connettiDatabase();
             try
             {
                 MySqlCommand cmd = new MySqlCommand(query, conn);

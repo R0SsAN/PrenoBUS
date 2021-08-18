@@ -25,5 +25,19 @@ namespace prenoBUS_v1._0
             InitializeComponent();
             this.lineaBus = lineaBus;
         }
+        private void camSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            webCam.CameraIndex = camSelect.SelectedIndex;
+        }
+
+        private void QrWebCamControl_QrDecoded(object sender, string e)
+        {
+            //dtext.Text = e;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            camSelect.ItemsSource = webCam.CameraNames;
+        }
     }
 }
