@@ -19,16 +19,18 @@ namespace prenoBUS_v1._0
     /// </summary>
     public partial class SceltaLinea : Window
     {
+        CMySQL_login mysql;
         int lineaBus;
-        public SceltaLinea()
+        public SceltaLinea(CMySQL_login mysql)
         {
             InitializeComponent();
+            this.mysql = mysql;
             lineaBus = 0;
         }
 
         private void avvioControllo()
         {
-            ControlloBiglietti win = new ControlloBiglietti(lineaBus);
+            ControlloBiglietti win = new ControlloBiglietti(lineaBus,mysql);
             win.Show();
             this.Close();
         }

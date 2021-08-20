@@ -77,7 +77,7 @@ namespace prenoBUS_v1._0
             if (check)
             {
                 MessageBox.Show("Utente verificato!");
-                SceltaLinea win = new SceltaLinea();
+                SceltaLinea win = new SceltaLinea(database_login);
                 win.Show();
                 this.Close();
             }

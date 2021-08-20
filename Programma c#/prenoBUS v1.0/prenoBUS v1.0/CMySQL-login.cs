@@ -4,7 +4,7 @@ using System.Data;
 
 namespace prenoBUS_v1._0
 {
-    class CMySQL_login
+    public class CMySQL_login
     {
         static MySqlConnection conn;
         string connString;
@@ -55,6 +55,42 @@ namespace prenoBUS_v1._0
             catch(Exception)
             { }
             return false;
+        }
+        public CData controllaBiglietto(string qr)
+        {
+            CData dati;
+            string query = $"SELECT linea, inizioAbbonamento, fineAbbonamento from biglietti where codiceqr='{qr}'";
+            disconnettiDatabase();
+            connettiDatabase();
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    dati = new CData(qr,reader.GetInt32(0), reader.GetString(1), reader.GetString(2));
+                    return dati;
+                }
+            }
+            catch (Exception)
+            { }
+            return null;
+        }
+        public bool eliminaBiglietto(string qr)
+        {
+            disconnettiDatabase();
+            connettiDatabase();
+            string query = $"DELETE FROM biglietti WHERE codiceqr='{qr}'";
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

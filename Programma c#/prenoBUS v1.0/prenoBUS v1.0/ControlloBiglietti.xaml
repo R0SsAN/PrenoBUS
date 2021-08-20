@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:prenoBUS_v1._0"
         xmlns:QrWebCam="clr-namespace:QrWebCam;assembly=QrWebCam" x:Class="prenoBUS_v1._0.ControlloBiglietti"
         mc:Ignorable="d"
-        Title="PrenoBUS v1.0 - Controllo Biglietti" Height="642" Width="1184" WindowStartupLocation="CenterScreen">
+        Title="PrenoBUS v1.0 - Controllo Biglietti" Height="642" Width="1056.8" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -65,23 +65,26 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Canvas HorizontalAlignment="Left" Height="612" VerticalAlignment="Top" Width="1178" Margin="0,0,-0.4,0">
+        <Canvas HorizontalAlignment="Left" Height="612" VerticalAlignment="Top" Width="1050">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF289EFF" Offset="0"/>
                     <GradientStop Color="#FF20E3FF" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
-            <Canvas Height="517" Canvas.Left="722" Canvas.Top="41" Width="388" Background="White">
-                <QrWebCam:QrWebCamControl Loaded="Window_Loaded" x:Name="webCam" QrDecoded="QrWebCamControl_QrDecoded" Height="226" Canvas.Top="150" Width="309" Canvas.Left="40" />
-                <ComboBox SelectionChanged="camSelect_SelectionChanged" x:Name="camSelect" VerticalAlignment="Center" HorizontalAlignment="Center" Canvas.Left="40" Canvas.Top="50" Width="309" />
+            <Canvas Height="517" Canvas.Left="551" Canvas.Top="41" Width="425" Background="White">
+                <QrWebCam:QrWebCamControl Loaded="Window_Loaded" x:Name="webCam" QrDecoded="QrWebCamControl_QrDecoded" Height="226" Canvas.Top="151" Width="309" Canvas.Left="60" />
+                <ComboBox SelectionChanged="camSelect_SelectionChanged" x:Name="camSelect" VerticalAlignment="Center" HorizontalAlignment="Center" Canvas.Left="60" Canvas.Top="61" Width="309" />
             </Canvas>
 
 
-            <Canvas Height="517" Canvas.Left="69" Canvas.Top="41" Width="598" Background="White">
-                <Button x:Name="btnEsci" Content="Fine Corsa" Canvas.Left="67" Canvas.Top="450" Width="477" Height="47" Background="#FFFF4949" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand"/>
+            <Canvas Height="517" Canvas.Left="74" Canvas.Top="41" Width="428" Background="White">
+                <Button x:Name="btnEsci" Content="Fine Corsa" Canvas.Left="31" Canvas.Top="449" Width="360" Height="47" Background="#FFFF4949" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand"/>
+                <Label x:Name="lPosti" Content="30" Canvas.Left="181" Canvas.Top="192" Height="75" Width="75" FontSize="50" Foreground="#FF00D103"/>
+                <Button x:Name="btnObliterati" Content="Visualizza biglietti obliterati" Canvas.Left="31" Canvas.Top="381" Width="360" Height="47" Background="#FFC8C8C8" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand"/>
             </Canvas>
-            <Label Content="LINEA C90" Canvas.Left="294" Canvas.Top="50" Height="64" Width="208" FontFamily="Nirmala UI" FontSize="30"/>
+            <Label x:Name="linea" Content="LINEA C90" Canvas.Left="209" Canvas.Top="57" Height="64" Width="208" FontFamily="Nirmala UI" FontSize="30" FontWeight="Bold"/>
+            <Label x:Name="linea_Copy" Content="Posti disponibili:" Canvas.Left="177" Canvas.Top="186" Height="64" Width="272" FontFamily="Nirmala UI" FontSize="30"/>
         </Canvas>
 
     </Grid>

@@ -19,11 +19,18 @@ namespace prenoBUS_v1._0
     /// </summary>
     public partial class ControlloBiglietti : Window
     {
+        CMySQL_login mysql;
+        const int nPostiMax = 30;
         int lineaBus;
-        public ControlloBiglietti(int lineaBus)
+        int nPostiDisponibili;
+
+        public ControlloBiglietti(int lineaBus,CMySQL_login mysql)
         {
             InitializeComponent();
             this.lineaBus = lineaBus;
+            this.mysql = mysql;
+            nPostiDisponibili = nPostiMax;
+            linea.Content = "LINEA C" + lineaBus.ToString();
         }
         private void camSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -32,12 +39,41 @@ namespace prenoBUS_v1._0
 
         private void QrWebCamControl_QrDecoded(object sender, string e)
         {
-            //dtext.Text = e;
+            if (nPostiDisponibili > 0)
+                controllaBiglietto(e);
+            else
+                MessageBox.Show("Tutti i posti disponibili sono stati occupati!");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             camSelect.ItemsSource = webCam.CameraNames;
+        }
+        private void controllaBiglietto(string qr)
+        {
+            CData dati= mysql.controllaBiglietto(qr);
+            if(dati==null)
+                MessageBox.Show("Biglietto/Abbonamento non valido!");
+            else
+            {
+                if (dati.inizioAbbonamento == null)
+                {
+                    if (!mysql.eliminaBiglietto(qr))
+                        MessageBox.Show("Problema con il biglietto, riprova!");
+                }
+                else
+                {
+                    DateTime oggi = DateTime.Today;
+                    if (!(oggi.Ticks > dati.inizioAbbonamento.Value.Ticks && oggi.Ticks < dati.fineAbbonamento.Value.Ticks))
+                    {
+                        MessageBox.Show("Abbonamento scaduto o non valido!");
+                        mysql.eliminaBiglietto(qr)
+                    }
+                        
+                }
+            }
+            
+
         }
     }
 }
