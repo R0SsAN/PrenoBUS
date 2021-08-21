@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,12 +24,14 @@ namespace prenoBUS_v1._0
         const int nPostiMax = 30;
         int lineaBus;
         int nPostiDisponibili;
+        string ultimoqr;
 
         public ControlloBiglietti(int lineaBus,CMySQL_login mysql)
         {
             InitializeComponent();
             this.lineaBus = lineaBus;
             this.mysql = mysql;
+            ultimoqr = "";
             nPostiDisponibili = nPostiMax;
             linea.Content = "LINEA C" + lineaBus.ToString();
         }
@@ -51,29 +54,77 @@ namespace prenoBUS_v1._0
         }
         private void controllaBiglietto(string qr)
         {
-            CData dati= mysql.controllaBiglietto(qr);
-            if(dati==null)
-                MessageBox.Show("Biglietto/Abbonamento non valido!");
-            else
+            if(qr!=ultimoqr)
             {
-                if (dati.inizioAbbonamento == null)
-                {
-                    if (!mysql.eliminaBiglietto(qr))
-                        MessageBox.Show("Problema con il biglietto, riprova!");
-                }
+                CData dati = mysql.controllaBiglietto(qr);
+                if (dati == null)
+                    MessageBox.Show("Biglietto/Abbonamento non valido!");
                 else
                 {
-                    DateTime oggi = DateTime.Today;
-                    if (!(oggi.Ticks > dati.inizioAbbonamento.Value.Ticks && oggi.Ticks < dati.fineAbbonamento.Value.Ticks))
+                    if (dati.linea == lineaBus)
                     {
-                        MessageBox.Show("Abbonamento scaduto o non valido!");
-                        mysql.eliminaBiglietto(qr)
+                        if (dati.inizioAbbonamento == null)
+                        {
+                            if (!mysql.eliminaBiglietto(qr))
+                                MessageBox.Show("Problema con il biglietto, riprova!");
+                            else
+                                diminuisciContatore();
+                        }
+                        else
+                        {
+                            DateTime oggi = DateTime.Today;
+                            if (!(oggi.Ticks >= dati.inizioAbbonamento.Value.Ticks && oggi.Ticks <= dati.fineAbbonamento.Value.Ticks))
+                            {
+                                MessageBox.Show("Abbonamento scaduto o non valido!");
+                                mysql.eliminaBiglietto(qr);
+                            }
+                            else
+                                diminuisciContatore();
+                        }
                     }
-                        
+                    else
+                        MessageBox.Show("Biglietto/Abbonamento non corretto (Linea sbagliata)!");
                 }
+                ultimoqr = qr;
             }
-            
+        }
+        private void diminuisciContatore()
+        {
+            nPostiDisponibili--;
+            lPosti.Content = nPostiDisponibili.ToString();
+            if (nPostiDisponibili < 10)
+                lPosti.Foreground = Brushes.Orange;
+            Thread th = new Thread(this.threadCheck);
+            th.Start();
+        }
 
+        private void btnEsci_Click(object sender, RoutedEventArgs e)
+        {
+            SceltaLinea temp = new SceltaLinea(mysql);
+            temp.Show();
+            this.Close();
+        }
+        private void threadCheck()
+        {
+            Thread t = new Thread(this.accendi);
+            t.Start();
+            Thread.Sleep(1500);
+            t = new Thread(this.spegni);
+            t.Start();
+        }
+        private void accendi()
+        {
+            if (!CheckAccess())
+                Dispatcher.Invoke(() => { accendi(); });
+            else
+                check.Visibility = Visibility.Visible;
+        }
+        private void spegni()
+        {
+            if (!CheckAccess())
+                Dispatcher.Invoke(() => { spegni(); });
+            else
+                check.Visibility = Visibility.Hidden;
         }
     }
 }
