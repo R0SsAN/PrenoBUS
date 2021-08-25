@@ -8,31 +8,51 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Roboto:wght@900&display=swap" rel="stylesheet">
     
 </head>
 <body>
-    <div class="container">
+    <div id="vue-container">
             <h1 class="titolo">PrenoBUS v1.0</h1>
-            <div class="form">
-                <h2 id="intestazione">Selezionare il biglietto: </h2>
+            <div class="form"  ref="form">
+                <h2 id="intestazione">Selezionare il tipo di biglietto: </h2>
                 <div class="scelta">
-                    <div class="pulsante">
-                        <h2>Biglietto Singolo</h2>
-                        
-                    </div>
-                    <div class="pulsante">
-                        <h2>Pulsante 1</h2>
-                        
-                    </div>
-                    <div class="pulsante">
-                        <h2>Pulsante 1</h2>
-                        
-                    </div>
+
+                    <transition name="entrata_uscita">
+                        <div v-if="vis1" class="pulsante1" @click="selezionaTipo(1)">
+                            <h1>Biglietto singolo</h1>
+                            <p>2€</p>
+                        </div>
+                    </transition>
+
+                    <transition name="entrata_uscita">
+                        <div v-if="vis1" class="pulsante1" @click="selezionaTipo(2)">
+                            <h1 style="font-size: 33px;margin-bottom: 42px;">Abbonamento settimanale</h1>
+                            <p>12€</p>
+                        </div>
+                    </transition>
+
+                    <transition name="entrata_uscita">
+                        <div v-if="vis1" class="pulsante1" @click="selezionaTipo(2)">
+                            <h1 style="font-size: 33px;margin-bottom: 42px;">Abbonamento mensile</h1>
+                            <p>37€</p>
+                        </div>
+                    </transition>
+
+                    <transition name="entrata_uscita">
+                        <div v-if="vis2" class="pulsante2">
+                            <p class="linea">C40</p>
+                        </div>
+                    </transition>
+                    
                 </div>
             </div>
     </div>
+    
 
     <script src="../JS/script.js"></script>
+    
 </body>
 </html>
