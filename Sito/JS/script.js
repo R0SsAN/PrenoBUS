@@ -4,6 +4,8 @@ var app = new Vue({
         tipo: 0,
         linea: 0,
         data: "",
+        datafine: "",
+        id: "",
         vis1: true,
         vis2: false,
         vis3: false,
@@ -55,15 +57,17 @@ var app = new Vue({
         },
         creaBiglietto()
         {
-            var id=creaId(12);
-            console.log(id);
-            var qrcode=this.generaQr(id);
+            this.creaFine();
+            this.id=creaId(12);
+            console.log(this.id);
+            var qrcode=this.generaQr();
             setTimeout(function() {app.generaPdf()}, 1000);
+            setTimeout(function() {app.aggiornaSql()}, 1000);
         },
-        generaQr(id)
+        generaQr()
         {
             var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: id,
+                text: this.id,
                 width: 300,
                 height: 300,
                 colorDark : "#000000",
@@ -112,7 +116,39 @@ var app = new Vue({
             pdf.save("prova.pdf");
 
 
+        },
+        aggiornaSql()
+        {
+            var httpr=new XMLHttpRequest();
+            httpr.open("POST","http://prenobus.epizy.com/api.php",true);
+            httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            httpr.onreadystatechange=function(){
+                if(httpr.readyState==4 && httpr.status==200){
+                    console.log(httpr.responseText);
+                }
+            }
+            httpr.send("linea="+this.linea.toString()+"&codiceqr="+this.id+"&inizio="+this.data+"&fine="+this.datafine);
+        },
+        creaFine()
+        {
+            var data=new Date(this.data);
+            if(this.tipo!=1)
+            {
+                if(this.tipo==2)
+                data.setDate(data.getDate()+7);
+                else if(this.tipo==3)
+                    data.setDate(data.getDate()+30);
+                this.datafine=data;
+                this.datafine = data.toISOString().slice(0,10);
+            }
+            else
+            {
+                this.data="-";
+                this.datafine="-";
+            }
+            console.log(this.datafine);
         }
+        
     }
 });
 function modificaSize()

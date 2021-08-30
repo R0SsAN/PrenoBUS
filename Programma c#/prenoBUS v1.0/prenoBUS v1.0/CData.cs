@@ -19,8 +19,8 @@ namespace prenoBUS_v1._0
             this.linea = linea;
             try
             {
-                this.inizioAbbonamento = DateTime.ParseExact(inizioAbbonamento, "d/M/yyyy", CultureInfo.InvariantCulture);
-                this.fineAbbonamento = DateTime.ParseExact(fineAbbonamento, "d/M/yyyy", CultureInfo.InvariantCulture);
+                this.inizioAbbonamento = DateTime.ParseExact(inizioAbbonamento, "yyyy-M-d", CultureInfo.InvariantCulture);
+                this.fineAbbonamento = DateTime.ParseExact(fineAbbonamento, "yyyy-M-d", CultureInfo.InvariantCulture);
             }
             catch(Exception)
             {
