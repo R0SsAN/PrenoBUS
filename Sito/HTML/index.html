@@ -1,58 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrenoBUS v1.0</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Roboto:wght@900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700;800&family=Roboto:wght@900&display=swap"
+        rel="stylesheet">
+
 </head>
+
 <body>
     <div id="vue-container">
-            <h1 class="titolo">PrenoBUS v1.0</h1>
-            <div class="form"  ref="form">
-                <h2 id="intestazione">Selezionare il tipo di biglietto: </h2>
-                <div class="scelta">
+        <h1 class="titolo">PrenoBUS v1.0</h1>
+        <div class="form" ref="form">
+            <h2 id="intestazione">Selezionare il tipo di biglietto: </h2>
+            <div class="scelta">
+                <!--#region tipo-biglietto -->
+                <!-- bottoni per tipo biglietto -->
+                <transition name="entrata_uscita">
+                    <div v-if="vis1" class="pulsante1" @click="selezionaTipo(1)">
+                        <h1>Biglietto singolo</h1>
+                        <p>2€</p>
+                    </div>
+                </transition>
 
-                    <transition name="entrata_uscita">
-                        <div v-if="vis1" class="pulsante1" @click="selezionaTipo(1)">
-                            <h1>Biglietto singolo</h1>
-                            <p>2€</p>
-                        </div>
-                    </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis1" class="pulsante1" @click="selezionaTipo(2)">
+                        <h1 style="font-size: 33px;margin-bottom: 42px;">Abbonamento settimanale</h1>
+                        <p>12€</p>
+                    </div>
+                </transition>
 
-                    <transition name="entrata_uscita">
-                        <div v-if="vis1" class="pulsante1" @click="selezionaTipo(2)">
-                            <h1 style="font-size: 33px;margin-bottom: 42px;">Abbonamento settimanale</h1>
-                            <p>12€</p>
-                        </div>
-                    </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis1" class="pulsante1" @click="selezionaTipo(2)">
+                        <h1 style="font-size: 33px;margin-bottom: 42px;">Abbonamento mensile</h1>
+                        <p>37€</p>
+                    </div>
+                </transition>
+                <!--#endregion -->
 
-                    <transition name="entrata_uscita">
-                        <div v-if="vis1" class="pulsante1" @click="selezionaTipo(2)">
-                            <h1 style="font-size: 33px;margin-bottom: 42px;">Abbonamento mensile</h1>
-                            <p>37€</p>
-                        </div>
-                    </transition>
+                <!--#region linea -->
+                <!-- bottoni per linea -->
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(40)">
+                        <p class="linea">C40</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(43)">
+                        <p class="linea">C43</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(45)">
+                        <p class="linea">C45</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(46)">
+                        <p class="linea">C46</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(47)">
+                        <p class="linea">C47</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(49)">
+                        <p class="linea">C49</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(50)">
+                        <p class="linea">C50</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(52)">
+                        <p class="linea">C52</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(60)">
+                        <p class="linea">C60</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(80)">
+                        <p class="linea">C80</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(82)">
+                        <p class="linea">C82</p>
+                    </div>
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis2" class="pulsante2" @click="selezionaClasse(91)">
+                        <p class="linea">C91</p>
+                    </div>
+                </transition>
+                <!--#endregion -->
+                <transition name="entrata_uscita">
+                    <h2 v-if="vis3">Seleziona data inizio abbonamento: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+                </transition>
+                <transition name="entrata_uscita">
+                    <input v-if="vis3" type="date" id="datepicker">
+                </transition>
+                <transition name="entrata_uscita">
+                    <div v-if="vis3" class="pulsante3" @click="selezionaData()">
+                        <p class="data">Conferma data</p>
+                    </div>
+                </transition>
 
-                    <transition name="entrata_uscita">
-                        <div v-if="vis2" class="pulsante2">
-                            <p class="linea">C40</p>
-                        </div>
-                    </transition>
-                    
-                </div>
+
+
+                <transition name="entrata_uscita">
+                    <div id="qrcode" v-if="vis4"></div>
+                </transition>
+                
+
+
             </div>
+        </div>
     </div>
-    
+
 
     <script src="../JS/script.js"></script>
-    
+
 </body>
+
 </html>
