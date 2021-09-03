@@ -20,7 +20,7 @@
 
 <body>
     <div id="vue-container">
-        <h1 class="titolo">PrenoBUS v1.0</h1>
+        <h1 class="titolo" style="font-size: 50px;">PrenoBUS</h1>
         <div class="form" ref="form">
             <h2 id="intestazione">Selezionare il tipo di biglietto: </h2>
             <div class="scelta">
@@ -111,6 +111,8 @@
                     </div>
                 </transition>
                 <!--#endregion -->
+
+                <!--#region data-abbonamento -->
                 <transition name="entrata_uscita">
                     <h2 v-if="vis3">Seleziona data inizio abbonamento: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
                 </transition>
@@ -122,15 +124,27 @@
                         <p class="data">Conferma data</p>
                     </div>
                 </transition>
+                <!--#endregion -->
 
-
+                <!--#region download-biglietto -->
 
                 <transition name="entrata_uscita">
                     <div id="qrcode" v-if="vis4"></div>
                 </transition>
-                
-
-
+                <transition name="entrata_uscita">
+                    <div class="riepilogo" v-if="vis4">
+                        <h2 id="rTit"></h2>
+                        <h3 class="rData" id="rIn"></h3>
+                        <h3 class="rData" id="rFin"></h3>
+                        <div v-if="vis4" class="pulsante3" @click="generaPdf()" style="width:190px;margin-left:23px;">
+                            <p class="data">Scarica biglietto pdf</p>
+                        </div>
+                        <div v-if="vis4" class="pulsante4" @click="ritornaHome()" style="width:240px;margin-left:0px;">
+                            <p class="data">Ordina un altro biglietto</p>
+                        </div>
+                    </div>
+                </transition>
+                <!--#endregion -->
             </div>
         </div>
     </div>

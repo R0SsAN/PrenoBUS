@@ -82,7 +82,7 @@
             <Canvas Height="517" Canvas.Left="74" Canvas.Top="41" Width="428" Background="White">
                 <Button x:Name="btnEsci" Content="Fine Corsa" Canvas.Left="31" Canvas.Top="449" Width="360" Height="47" Background="#FFFF4949" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand" Click="btnEsci_Click"/>
                 <Label x:Name="lPosti" Content="30" Canvas.Left="181" Canvas.Top="192" Height="75" Width="75" FontSize="50" Foreground="#FF00D103"/>
-                <Button x:Name="btnObliterati" Content="Visualizza biglietti obliterati" Canvas.Left="31" Canvas.Top="381" Width="360" Height="47" Background="#FFC8C8C8" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand"/>
+                <Button x:Name="btnObliterati" Content="Visualizza biglietti obliterati" Canvas.Left="31" Canvas.Top="381" Width="360" Height="47" Background="#FFC8C8C8" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand" Click="btnObliterati_Click"/>
             </Canvas>
             <Label x:Name="linea" Content="LINEA C90" Canvas.Left="209" Canvas.Top="57" Height="64" Width="208" FontFamily="Nirmala UI" FontSize="30" FontWeight="Bold"/>
             <Label x:Name="linea_Copy" Content="Posti disponibili:" Canvas.Left="177" Canvas.Top="186" Height="64" Width="272" FontFamily="Nirmala UI" FontSize="30"/>

@@ -126,6 +126,9 @@
     <Compile Include="SceltaLinea.xaml.cs">
       <DependentUpon>SceltaLinea.xaml</DependentUpon>
     </Compile>
+    <Compile Include="wLista.xaml.cs">
+      <DependentUpon>wLista.xaml</DependentUpon>
+    </Compile>
     <Page Include="ControlloBiglietti.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +150,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SceltaLinea.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="wLista.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

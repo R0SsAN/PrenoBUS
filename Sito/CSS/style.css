@@ -147,9 +147,44 @@ p{
     cursor:pointer;
     color:white;
 }
+.pulsante3:hover{
+    transform: scale(1.1);
+}
+.pulsante4{
+    transition: transform .2s; 
+    background-image: url(../data/wall3.png);
+    background-position: center;
+    background-size: cover;
+    margin-top:10px;
+    margin-left:30px;
+
+    width:150px;
+    height: 20px;
+    border-radius: 20px;
+    padding:15px;
+    overflow: hidden;
+    cursor:pointer;
+    color:white;
+}
+.pulsante4:hover{
+    transform: scale(1.1);
+}
 .data{
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     text-align: center;
     margin: 0;
+}
+.riepilogo{
+    margin-left:130px;
+    display: flex;
+    flex-direction: column;   
+}
+.rData{
+    font-size: 22px;
+}
+#rTit{
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size:25px;
 }

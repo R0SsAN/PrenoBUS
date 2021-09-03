@@ -21,6 +21,7 @@ namespace prenoBUS_v1._0
     public partial class ControlloBiglietti : Window
     {
         CMySQL_login mysql;
+        List<CData> listaPasseggeri;
         const int nPostiMax = 30;
         int lineaBus;
         int nPostiDisponibili;
@@ -34,6 +35,7 @@ namespace prenoBUS_v1._0
             ultimoqr = "";
             nPostiDisponibili = nPostiMax;
             linea.Content = "LINEA C" + lineaBus.ToString();
+            listaPasseggeri = new List<CData>();
         }
         private void camSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -63,23 +65,30 @@ namespace prenoBUS_v1._0
                 {
                     if (dati.linea == lineaBus)
                     {
-                        if (dati.inizioAbbonamento == null)
+                        if (dati.inizioAbbonamento.ToString("yyyy-M-d") == "1980-1-1")
                         {
                             if (!mysql.eliminaBiglietto(qr))
                                 MessageBox.Show("Problema con il biglietto, riprova!");
                             else
+                            {
+                                listaPasseggeri.Add(dati);
                                 diminuisciContatore();
+                            }
                         }
                         else
                         {
                             DateTime oggi = DateTime.Today;
-                            if (!(oggi.Ticks >= dati.inizioAbbonamento.Value.Ticks && oggi.Ticks <= dati.fineAbbonamento.Value.Ticks))
+                            if (!(oggi.Ticks >= dati.inizioAbbonamento.Ticks && oggi.Ticks <= dati.fineAbbonamento.Ticks))
                             {
                                 MessageBox.Show("Abbonamento scaduto o non valido!");
                                 mysql.eliminaBiglietto(qr);
                             }
                             else
+                            {
+                                listaPasseggeri.Add(dati);
                                 diminuisciContatore();
+                            }
+                                
                         }
                     }
                     else
@@ -125,6 +134,12 @@ namespace prenoBUS_v1._0
                 Dispatcher.Invoke(() => { spegni(); });
             else
                 check.Visibility = Visibility.Hidden;
+        }
+
+        private void btnObliterati_Click(object sender, RoutedEventArgs e)
+        {
+            wLista temp = new wLista(listaPasseggeri);
+            temp.Show();
         }
     }
 }

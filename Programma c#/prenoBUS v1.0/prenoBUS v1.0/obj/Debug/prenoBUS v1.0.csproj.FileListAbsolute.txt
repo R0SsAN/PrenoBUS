@@ -95,3 +95,5 @@ D:\Scuola\GitHub\PrenoBUS\Programma c#\prenoBUS v1.0\prenoBUS v1.0\bin\Debug\zxi
 D:\Scuola\GitHub\PrenoBUS\Programma c#\prenoBUS v1.0\prenoBUS v1.0\bin\Debug\zxing.xml
 D:\Scuola\GitHub\PrenoBUS\Programma c#\prenoBUS v1.0\prenoBUS v1.0\bin\Debug\zxing.presentation.pdb
 D:\Scuola\GitHub\PrenoBUS\Programma c#\prenoBUS v1.0\prenoBUS v1.0\bin\Debug\zxing.presentation.xml
+D:\Scuola\GitHub\PrenoBUS\Programma c#\prenoBUS v1.0\prenoBUS v1.0\obj\Debug\wLista.g.cs
+D:\Scuola\GitHub\PrenoBUS\Programma c#\prenoBUS v1.0\prenoBUS v1.0\obj\Debug\wLista.baml
