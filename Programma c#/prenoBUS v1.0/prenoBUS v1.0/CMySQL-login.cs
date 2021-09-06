@@ -15,7 +15,7 @@ namespace prenoBUS_v1._0
         }
         public bool connettiDatabase()
         {
-            connString = "server=remotemysql.com;user=UZ4rJQ4qBZ;password=xzZFVqol3S;database=UZ4rJQ4qBZ;charset=utf8";
+            connString = "server=bb4guwdx6vaaqx95ix7h-mysql.services.clever-cloud.com;user=uzdvzunx5mjtnyad;password=2pR6rqfLqYbMfLa1XqwF;database=bb4guwdx6vaaqx95ix7h;charset=utf8";
             try
             {
                 conn = new MySqlConnection(connString);

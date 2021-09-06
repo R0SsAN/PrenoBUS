@@ -137,7 +137,7 @@ var app = new Vue({
         {
             //collego il sito ad un api che salva il biglietto nel database sql
             var httpr=new XMLHttpRequest();
-            httpr.open("POST","http://prenobus.epizy.com/api.php",true);
+            httpr.open("POST","http://prenobus.epizy.com/PHP/api.php",true);
             httpr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
             httpr.onreadystatechange=function(){
                 if(httpr.readyState==4 && httpr.status==200){
