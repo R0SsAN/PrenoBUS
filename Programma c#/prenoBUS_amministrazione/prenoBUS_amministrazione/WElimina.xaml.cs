@@ -27,22 +27,30 @@ namespace prenoBUS_amministrazione
         {
             string login = username.Text;
             string pass = password.Text;
-            if (mySql.eliminaUtente(login, pass))
-                MessageBox.Show("Utente eliminato con successo!");
+            if (login != "" && pass != "" && login != "Username" && pass != "Password")
+            {
+                if (mySql.eliminaUtente(login, pass))
+                    MessageBox.Show("Utente eliminato con successo!");
+                else
+                    MessageBox.Show("Utente non presente / problema al database");
+            }
             else
-                MessageBox.Show("Utente non presente / problema al database");
+                MessageBox.Show("Dati mancanti!");
+            
 
-            username.Text = "";
-            password.Text = "";
+            username.Text = "Username";
+            password.Text = "Password";
         }
         private void username_MouseEnter(object sender, MouseEventArgs e)
         {
-            username.Text = "";
+            if(username.Text=="Username")
+                username.Text = "";
         }
 
         private void password_MouseEnter(object sender, MouseEventArgs e)
         {
-            password.Text = "";
+            if(password.Text=="Password")
+                password.Text = "";
         }
 
         private void username_MouseLeave(object sender, MouseEventArgs e)

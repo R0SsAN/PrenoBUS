@@ -10,5 +10,7 @@ $comando="INSERT INTO `biglietti`(`linea`, `codiceqr`, `inizioAbbonamento`, `fin
 $result=mysqli_query($conx,$comando);
 if($result==true)
 	echo "true";
+else
+	echo "false";
 
 ?>

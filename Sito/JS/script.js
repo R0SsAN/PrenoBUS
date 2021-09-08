@@ -129,7 +129,7 @@ var app = new Vue({
             pdf.setFontSize(10);
             pdf.text("PrenoBUS v1.0", 140, 56);
             
-            pdf.save("prova.pdf");
+            pdf.save("biglietto.pdf");
 
 
         },

@@ -28,13 +28,17 @@ namespace prenoBUS_amministrazione
         {
             string login = username.Text;
             string pass = password.Text;
-            if (mySql.creaUtente(login, pass))
-                MessageBox.Show("Utente creato con successo!");
+            if (login != "" && pass != "" && login != "Username" && pass != "Password")
+            {
+                if (mySql.creaUtente(login, pass))
+                    MessageBox.Show("Utente creato con successo!");
+                else
+                    MessageBox.Show("Utente già presente / problema al database");
+            }
             else
-                MessageBox.Show("Utente già presente / problema al database");
-
-            username.Text = "";
-            password.Text = "";
+                MessageBox.Show("Dati mancanti!");
+            username.Text = "Username";
+            password.Text = "Password";
 
         }
 
@@ -46,12 +50,14 @@ namespace prenoBUS_amministrazione
         }
         private void username_MouseEnter(object sender, MouseEventArgs e)
         {
-            username.Text = "";
+            if (username.Text == "Username")
+                username.Text = "";
         }
 
         private void password_MouseEnter(object sender, MouseEventArgs e)
         {
-            password.Text = "";
+            if (password.Text == "Password")
+                password.Text = "";
         }
 
         private void username_MouseLeave(object sender, MouseEventArgs e)
