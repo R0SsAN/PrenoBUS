@@ -14,7 +14,7 @@ namespace prenoBUS_v1._0
     {
         CMySQL_login mysql;
         List<CData> listaPasseggeri;
-        const int nPostiMax = 30;
+        const int nPostiMax = 50;
         int lineaBus;
         int nPostiDisponibili;
         string ultimoqr;
@@ -28,6 +28,7 @@ namespace prenoBUS_v1._0
             nPostiDisponibili = nPostiMax;
             linea.Content = "LINEA C" + lineaBus.ToString();
             listaPasseggeri = new List<CData>();
+            sld.Minimum = 10;
         }
         private void camSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -36,6 +37,7 @@ namespace prenoBUS_v1._0
 
         private void QrWebCamControl_QrDecoded(object sender, string e)
         {
+            btnEdit.Visibility = Visibility.Hidden;
             if (nPostiDisponibili > 0)
                 controllaBiglietto(e);
             else
@@ -132,6 +134,32 @@ namespace prenoBUS_v1._0
         {
             wLista temp = new wLista(listaPasseggeri);
             temp.Show();
+        }
+
+
+        private void sld_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            lblNum.Content = (int)sld.Value;
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            btnEdit.Visibility = Visibility.Hidden;
+            lbln.Visibility = Visibility.Visible;
+            lblNum.Visibility = Visibility.Visible;
+            btnConf.Visibility = Visibility.Visible;
+            sld.Visibility = Visibility.Visible;
+        }
+
+        private void btnConf_Click(object sender, RoutedEventArgs e)
+        {
+            nPostiDisponibili = (int)sld.Value;
+            lPosti.Content = nPostiDisponibili.ToString();
+            btnEdit.Visibility = Visibility.Visible;
+            lbln.Visibility = Visibility.Hidden;
+            lblNum.Visibility = Visibility.Hidden;
+            btnConf.Visibility = Visibility.Hidden;
+            sld.Visibility = Visibility.Hidden;
         }
     }
 }

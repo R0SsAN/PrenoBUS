@@ -81,11 +81,16 @@
 
             <Canvas Height="517" Canvas.Left="74" Canvas.Top="41" Width="428" Background="White">
                 <Button x:Name="btnEsci" Content="Fine Corsa" Canvas.Left="31" Canvas.Top="449" Width="360" Height="47" Background="#FFFF4949" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand" Click="btnEsci_Click"/>
-                <Label x:Name="lPosti" Content="30" Canvas.Left="181" Canvas.Top="192" Height="75" Width="75" FontSize="50" Foreground="#FF00D103"/>
+                <Label x:Name="lPosti" Content="50" Canvas.Left="181" Canvas.Top="182" Height="74" Width="75" FontSize="50" Foreground="#FF00D103"/>
                 <Button x:Name="btnObliterati" Content="Visualizza biglietti obliterati" Canvas.Left="31" Canvas.Top="381" Width="360" Height="47" Background="#FFC8C8C8" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand" Click="btnObliterati_Click"/>
+                <Slider x:Name="sld" Canvas.Left="154" Canvas.Top="268" Height="21" Width="161" ValueChanged="sld_ValueChanged" Maximum="50" Visibility="Hidden"/>
+                <Button x:Name="btnConf" Content="Conferma" Canvas.Left="148" Canvas.Top="305" Width="136" Height="36" Background="#FF86E7FF" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand" Click="btnConf_Click" Visibility="Hidden"/>
+                <Button x:Name="btnEdit" Content="Modifica" Canvas.Left="286" Canvas.Top="208" Width="86" Height="49" Background="#FF86E7FF" Style="{DynamicResource rounded}" FontFamily="Verdana" FontSize="18" Cursor="Hand" Click="btnEdit_Click"/>
             </Canvas>
             <Label x:Name="linea" Content="LINEA C90" Canvas.Left="209" Canvas.Top="57" Height="64" Width="208" FontFamily="Nirmala UI" FontSize="30" FontWeight="Bold"/>
-            <Label x:Name="linea_Copy" Content="Posti disponibili:" Canvas.Left="177" Canvas.Top="186" Height="64" Width="272" FontFamily="Nirmala UI" FontSize="30"/>
+            <Label x:Name="linea_Copy" Content="Posti disponibili:" Canvas.Left="177" Canvas.Top="175" Height="64" Width="272" FontFamily="Nirmala UI" FontSize="30"/>
+            <Label x:Name="lbln" Content="Numero posti:" Canvas.Left="94" Canvas.Top="300" Height="42" Width="132" FontFamily="Nirmala UI" FontSize="18" Visibility="Hidden"/>
+            <Label x:Name="lblNum" Content="30&#xD;&#xA;" Canvas.Left="402" Canvas.Top="302" Height="42" Width="47" FontFamily="Nirmala UI" FontSize="18" Visibility="Hidden"/>
         </Canvas>
 
     </Grid>
